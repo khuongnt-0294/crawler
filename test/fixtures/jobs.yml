@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  workplace: MyText
+  business_category: MyString
+  job_category: MyString
+  content: MyText
+  requirement: MyText
+  work_time: MyString
+  salary: MyString
+  holiday: MyString
+  treatment: MyText
+  capture_path: MyString
+  raw_html: MyText
+  url: MyText
+
+two:
+  title: MyString
+  workplace: MyText
+  business_category: MyString
+  job_category: MyString
+  content: MyText
+  requirement: MyText
+  work_time: MyString
+  salary: MyString
+  holiday: MyString
+  treatment: MyText
+  capture_path: MyString
+  raw_html: MyText
+  url: MyText
