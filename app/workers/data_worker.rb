@@ -7,12 +7,6 @@ class DataWorker
   sidekiq_options retry: 5
 
   def perform start_page
-    # @default_uri = "http://doda.jp"
-    # @agent = Mechanize.new
-    # @root_page = @agent.get(@default_uri)
-    # @view_page = @root_page.link_with(text: "求人検索").click if @root_page.link_with(text: "求人検索").present?
-    # @form = @view_page.forms[0]
-    # @list_page = @agent.submit(@form, @form.buttons.last)
     initial_page
     @count = 0
     @test = 0
@@ -107,8 +101,6 @@ class DataWorker
             @form222.slice!(/([Ff]\s?[Aa]\s?[Xx]\s?：?:?\s?\d{2,}[\(\)－-]\d{2,}[\(\)－-]\d{3,}|[Ff]\s?[Aa]\s?[Xx]\s?：?:?\s?\d{4,}[\(\)－-]\d{5,}|\d{2,}[\(\)－-]\d{2,}[\(\)－-]\d{3,}\([fF][aA][xX]\)|\d{4,}[\(\)－-]\d{5,}\([fF][aA][xX]\)|ファクシミリ\s?：?:?\s?\d{2,}[\(\)－-]\d{2,}[\(\)－-]\d{3,}|ファクシミリ\s?：:??\s?\d{4,}[\(\)－-]\d{5,})/.match(@form222).to_a[0].to_s)
           end  
 
-          
-          # @array_form22 = []
           while /([０0]\d+[\(\)－-]\d{2,}[\(\)－-]\d{3,}|[０0]\d{3,}[\(\)－-]\d{5,})/.match(@form222).to_a[0].to_s.present? do
             tel = /([０0]\d+[\(\)－-]\d{2,}[\(\)－-]\d{3,}|[０0]\d{3,}[\(\)－-]\d{5,})/.match(@form222).to_a[0].to_s
             @form222.slice!(tel)
@@ -132,34 +124,5 @@ class DataWorker
       @test += 1 if @list_page.link_with(text: "次へ").nil?
     end while ((@list_page.link_with(text: "次へ").present? || (@test == 1)) && (@count < (@total/10 + 2)))
   end
-
-  # private
-
-  # def fix_string str
-  #   str = str.gsub(/<p.*?>/, "")    
-  #   str = str.gsub("<br>", "\n")
-  #   str = str.gsub("</br>", "\n")
-  #   str = str.gsub("<br/>", "\n")      
-  #   str = str.gsub("<p>", "\n")
-  #   str = str.gsub("</p>", "\n")
-  #   return str
-  # end
-
-  # def edit_string str
-  #   str = str.split("／")[0].to_s
-  #   str = str.split("〒")[0].to_s
-  #   str = str.split("【")[0].to_s
-  #   str = str.gsub("※", "").to_s
-  #   str = str.split("＜")[0].to_s
-  #   return str  
-  # end
-
-  # def format_tel str
-  #   str = str.gsub("－", "")
-  #   str = str.gsub("-", "")
-  #   str = str.gsub("(", "")
-  #   str = str.gsub(")", "")
-  #   return str
-  # end
   
 end  
